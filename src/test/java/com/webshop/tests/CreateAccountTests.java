@@ -6,36 +6,58 @@ import org.testng.annotations.Test;
 
 public class CreateAccountTests extends TestBase{
 
+//    @Test
+//    public void createNewAccountPositiveTest() {
+//
+//        // open register page
+//        click(By.cssSelector("[href='/register']"));
+//        // check radio
+//        click(By.cssSelector("#gender-female"));
+//        // enter name
+//        type(By.cssSelector("#FirstName"), "testName");
+//        // enter last name
+//        type(By.cssSelector("#LastName"), "testLastName");
+//        // enter email
+//        type(By.cssSelector("#Email"), "test@ts.ts");
+//        // enter password
+//        type(By.cssSelector("#Password"), "test1234$");
+//        // confirm password
+//        type(By.cssSelector("#ConfirmPassword"), "test1234$");
+//        // register button
+//        click(By.cssSelector("#register-button"));
+//        //assert
+//        Assert.assertTrue(isElementPresent(By.cssSelector(".ico-logout")));
+//    }
+
     @Test
-    public void createNewAccountPositiveTest() {
+    public void createExistingAccountNegativeTest() {
 
         // open register page
-        driver.findElement(By.cssSelector("[href='/register']")).click();
+        click(By.cssSelector("[href='/register']"));
         // check radio
-        driver.findElement(By.cssSelector("#gender-female")).click();
+        click(By.cssSelector("#gender-female"));
         // enter name
-        driver.findElement(By.cssSelector("#FirstName")).click();
-        driver.findElement(By.cssSelector("#FirstName")).clear();
-        driver.findElement(By.cssSelector("#FirstName")).sendKeys("testName");
+        type(By.cssSelector("#FirstName"), "testName");
         // enter last name
-        driver.findElement(By.cssSelector("#LastName")).click();
-        driver.findElement(By.cssSelector("#LastName")).clear();
-        driver.findElement(By.cssSelector("#LastName")).sendKeys("testLastName");
+        type(By.cssSelector("#LastName"), "testLastName");
         // enter email
-        driver.findElement(By.cssSelector("#Email")).click();
-        driver.findElement(By.cssSelector("#Email")).clear();
-        driver.findElement(By.cssSelector("#Email")).sendKeys("test@ts.ts");
+        type(By.cssSelector("#Email"), "test@ts.ts");
         // enter password
-        driver.findElement(By.cssSelector("#Password")).click();
-        driver.findElement(By.cssSelector("#Password")).clear();
-        driver.findElement(By.cssSelector("#Password")).sendKeys("test1234$");
+        type(By.cssSelector("#Password"), "test1234$");
         // confirm password
-        driver.findElement(By.cssSelector("#ConfirmPassword")).click();
-        driver.findElement(By.cssSelector("#ConfirmPassword")).clear();
-        driver.findElement(By.cssSelector("#ConfirmPassword")).sendKeys("test1234$");
+        type(By.cssSelector("#ConfirmPassword"), "test1234$");
         // register button
-        driver.findElement(By.cssSelector("#register-button")).click();
+        click(By.cssSelector("#register-button"));
         //assert
-        Assert.assertTrue(isElementPresent(By.cssSelector(".ico-logout")));
+        Assert.assertTrue(isUserExist());
     }
+
+    public boolean isUserExist() {
+        if (driver.findElements(By.xpath("//li[contains(text(),'The specified email already exists')]")).size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

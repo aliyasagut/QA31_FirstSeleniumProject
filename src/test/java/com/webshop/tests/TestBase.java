@@ -39,4 +39,56 @@ public class TestBase {
         driver.findElement(locator).click();
     }
 
+    public void clickLoginButton() {
+        click(By.cssSelector("[class='button-1 login-button']"));
+    }
+
+    public void fillLoginForm(User user) {
+        type(By.cssSelector("#Email"), user.getEmail());
+        type(By.cssSelector("#Password"), user.getPassword());
+    }
+
+    public void clickOnLoginLinkInHeader() {
+        click(By.cssSelector("[href='/login']"));
+    }
+
+    public boolean isProductAddedCorrect() {
+        return isElementPresent(By.xpath("//*[.='14.1-inch Laptop']"));
+    }
+
+    public void addProductToTheCart() {
+        click(By.cssSelector(".item-box:nth-child(3) .button-2.product-box-add-to-cart-button"));
+    }
+
+    public void clickOnShoppingCartButtonInHeader() {
+        click(By.cssSelector("[href='/cart']"));
+    }
+
+    public void clickOnRegisterButton() {
+        click(By.cssSelector("#register-button"));
+    }
+
+    public void fillInRegistrationForm(User user) {
+        click(By.cssSelector(user.getGender()));
+        type(By.cssSelector("#FirstName"), user.getName());
+        type(By.cssSelector("#LastName"), user.getLastname());
+        type(By.cssSelector("#Email"), user.getEmail());
+        type(By.cssSelector("#Password"), user.getPassword());
+        type(By.cssSelector("#ConfirmPassword"), user.getConfirmPassword());
+    }
+
+    public void clickOnRegisterButtonInHeader() {
+        click(By.cssSelector("[href='/register']"));
+    }
+
+    public boolean isUserExist() {
+        if (driver.findElements(By.xpath("//li[contains(text(),'The specified email already exists')]")).size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isLogOutButtonExist() {
+        return isElementPresent(By.cssSelector("[href='/logout']"));
+    }
 }

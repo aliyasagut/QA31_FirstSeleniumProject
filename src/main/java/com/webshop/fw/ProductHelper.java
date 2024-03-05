@@ -2,6 +2,7 @@ package com.webshop.fw;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class ProductHelper extends BaseHelper{
 
@@ -9,8 +10,12 @@ public class ProductHelper extends BaseHelper{
         super(driver);
     }
 
+//    Все хорошо, но для Assert следовало выбрать метод, проверяющий текст в элементе
     public boolean isProductAddedCorrect() {
-        return isElementPresent(By.xpath("//*[.='14.1-inch Laptop']"));
+//        return isElementPresent(By.xpath("//*[.='14.1-inch Laptop']"));
+        String actual = driver.findElement(By.cssSelector(".product-name")).getText();
+        String expected = "14.1-inch Laptop";
+        return actual.equals(expected);
     }
 
     public void addProductToTheCart() {

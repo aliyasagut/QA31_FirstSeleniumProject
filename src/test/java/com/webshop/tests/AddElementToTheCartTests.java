@@ -1,5 +1,6 @@
 package com.webshop.tests;
 
+import com.webshop.models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,17 +9,17 @@ public class AddElementToTheCartTests extends TestBase {
 
     @BeforeMethod
     public void precondition() {
-        clickOnLoginLinkInHeader();
-        fillLoginForm(new User()
+        app.getUser().clickOnLoginLinkInHeader();
+        app.getUser().fillLoginForm(new User()
                 .setEmail("test@ts.ts")
                 .setPassword("test1234$"));
-        clickLoginButton();
+        app.getUser().clickLoginButton();
     }
 
     @Test
     public void addElementToTheCartTest() {
-        addProductToTheCart();
-        clickOnShoppingCartButtonInHeader();
-        Assert.assertTrue(isProductAddedCorrect());
+        app.getProduct().addProductToTheCart();
+        app.getProduct().clickOnShoppingCartButtonInHeader();
+        Assert.assertTrue(app.getProduct().isProductAddedCorrect());
     }
 }

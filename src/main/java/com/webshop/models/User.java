@@ -1,4 +1,4 @@
-package com.webshop.tests;
+package com.webshop.models;
 
 public class User {
     private String gender;
@@ -60,5 +60,13 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
     }
 }

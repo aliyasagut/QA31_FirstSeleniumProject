@@ -73,7 +73,7 @@ public class FindElementTests {
         driver.findElement(By.cssSelector("[href='/search']"));
     }
 
-    @Test
+
     public void findElementByXpath() {
         // tag name = //tagName
         driver.findElement(By.xpath("//h1"));

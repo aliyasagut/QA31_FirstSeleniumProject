@@ -1,5 +1,6 @@
 package com.webshop.tests;
 
+import com.webshop.models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -7,11 +8,11 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginPositiveTest() {
-        clickOnLoginLinkInHeader();
-        fillLoginForm(new User()
+        app.getUser().clickOnLoginLinkInHeader();
+        app.getUser().fillLoginForm(new User()
                 .setEmail("test@ts.ts")
                 .setPassword("test1234$"));
-        clickLoginButton();
-        Assert.assertTrue(isLogOutButtonExist());
+        app.getUser().clickLoginButton();
+        Assert.assertTrue(app.getUser().isLogOutButtonExist());
     }
 }

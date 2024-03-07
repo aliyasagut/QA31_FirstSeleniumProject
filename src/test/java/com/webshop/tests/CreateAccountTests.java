@@ -5,14 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class CreateAccountTests extends TestBase{
 
 //    @Test
@@ -53,25 +45,7 @@ public class CreateAccountTests extends TestBase{
         Assert.assertTrue(app.getUser().isUserExist());
     }
 
-    @DataProvider
-    public Iterator<Object[]> createAccountWithCsv() throws IOException {
-        List<Object[]> list = new ArrayList<>();
-
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/accounts.csv")));
-
-        String line = reader.readLine();
-
-        while (line != null) {
-
-            String[] split = line.split(",");
-            list.add(new Object[]{new User().setName(split[0])
-                    .setLastname(split[1]).setEmail(split[2]).setPassword(split[3]).setConfirmPassword(split[4])});
-            line = reader.readLine();
-        }
-        return list.iterator();
-    }
-
-    @Test(dataProvider = "createAccountWithCsv")
+    @Test(dataProvider = "createAccountWithCsv", dataProviderClass = DataProvider.class)
     public void createAccountsPositiveFromDataProviderWithFile(User user) {
         app.getUser().clickOnRegisterButtonInHeader();
         app.getUser().fillInRegistrationForm(user);

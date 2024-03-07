@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Regression" verbose="1">
+    <test name="Regression">
+        <classes>
+            <class name="com.webshop.tests.LoginTests"/>
+            <class name="com.webshop.tests.CreateAccountTests">
+                <methods>
+                    <exclude name=".*DataProvider.*"/>
+                </methods>
+            </class>
+            <class name="com.webshop.tests.AddElementToTheCartTests"/>
+        </classes>
+    </test>
+
+</suite>

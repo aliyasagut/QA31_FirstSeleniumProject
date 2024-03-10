@@ -2,6 +2,7 @@ package com.webshop.tests;
 
 import com.webshop.models.User;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -29,6 +30,13 @@ public class CreateAccountTests extends TestBase{
 //        //assert
 //        Assert.assertTrue(isElementPresent(By.cssSelector(".ico-logout")));
 //    }
+
+    @BeforeMethod
+    public void precondition() {
+        if (app.getUser().isLogOutButtonExist()) {
+            app.getUser().clickOnLogOutButton();
+        }
+    }
 
     @Test
     public void createExistingAccountNegativeTest() {
